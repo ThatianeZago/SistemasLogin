@@ -38,6 +38,11 @@ public class Login extends javax.swing.JFrame {
 
         ctxPassword.setText("jPasswordField1");
         ctxPassword.setToolTipText("");
+        ctxPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gato.png"))); // NOI18N
 
@@ -119,6 +124,10 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         fr.setVisible(true);   
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ctxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxPasswordActionPerformed
 
     public static void main(String args[]) {
         

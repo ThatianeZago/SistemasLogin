@@ -1,3 +1,8 @@
+
+import static java.lang.Character.isDigit;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -89,7 +94,8 @@ public class FormRegisto extends javax.swing.JFrame {
         jLabel7.setText("Registro de Utilizador");
 
         ctxvalidar.setBackground(new java.awt.Color(51, 255, 51));
-        ctxvalidar.setText("Validar dados");
+        ctxvalidar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ctxvalidar.setText("VALIDAR DADOS");
         ctxvalidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxvalidarActionPerformed(evt);
@@ -110,23 +116,6 @@ public class FormRegisto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ctxREpass))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                .addGap(65, 65, 65)
-                                .addComponent(ctxpass, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(65, 65, 65))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ctxvalidar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(75, 75, 75))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,17 +126,31 @@ public class FormRegisto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(ctxNome, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ctxemail, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                                .addComponent(ctxmorada)
-                                .addComponent(ctxNIF)
-                                .addComponent(ctxtelefone)))
-                        .addGap(67, 67, 67))))
+                            .addComponent(ctxemail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ctxmorada, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ctxNIF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ctxtelefone, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ctxvalidar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ctxREpass))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                .addGap(65, 65, 65)
+                                .addComponent(ctxpass, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -208,9 +211,8 @@ public class FormRegisto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxpassActionPerformed
         private void mensagemErro(String erro){
-            JOptionPane.
+            JOptionPane.showMessageDialog(null, erro, "Erro Validação", JOptionPane.ERROR_MESSAGE);
         }
-    
     private void ctxvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxvalidarActionPerformed
     String nome = ctxNome.getText();
     String email = ctxemail.getText();
@@ -219,6 +221,7 @@ public class FormRegisto extends javax.swing.JFrame {
     String NIF = ctxNIF.getText();
     String password = ctxpass.getText();
     String REpass = ctxREpass.getText();
+    /*mensagemErro("teste");*/
         //email tem de ter 1@ e 1. após o @
         //morada tem de ter>5 caracteres
         //telefone 9 caracteres que sejam digito
@@ -227,7 +230,21 @@ public class FormRegisto extends javax.swing.JFrame {
         //pass 8 ou + caracteres, 1ou+ minusculas
         //1 ou+ algarismos, 1 ou+ maiusculas,
         //1 ou+ caracteres especiais
-
+    if(email.equals("") || !nome.equals("") || morada.equals("") ||
+            telefone.equals("") || NIF.equals("") || REpass.equals("") || password.equals("")){
+      mensagemErro("Preencha todos os campos!");  
+    }else{
+        if (!ValidaCampoNome(nome)){
+          mensagemErro("O campo nome tem de ter 2 caracteres alfabéticos");
+            }
+        if (!ValidaCampoNumerico(telefone)){
+          mensagemErro("O campo telefone tem de ser númerico e ter 9 digítos");
+            }  
+        if (!ValidaCampoNumerico(NIF)){
+          mensagemErro("O campo NIF tem de ser númerico e ter 9 digítos");
+            }
+        
+}
     
             
     
@@ -267,4 +284,27 @@ public class FormRegisto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
+
+    private boolean ValidaCampoNumerico(String valor) {
+        int x, contador=0, t=valor.length();
+        char c;
+        if(t!=9)
+            return false;
+        else{
+            for(x=0;x<t;x++){
+                c = valor.charAt(x);
+                if(isDigit(c))
+                    contador++;
+            }
+            if(t!=contador)
+                return false;
+        }
+        return true;    
+    }
+
+    private boolean ValidaCampoNome(String nome) {
+       int n1
+               
+        if(n1>2)
+    }
 }
