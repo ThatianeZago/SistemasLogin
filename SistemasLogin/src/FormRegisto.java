@@ -222,6 +222,8 @@ public class FormRegisto extends javax.swing.JFrame {
     String NIF = ctxNIF.getText();
     String password = ctxpass.getText();
     String REpass = ctxREpass.getText();
+    System.out.println("Pass"+pass);
+    System.out.println("REpass"+REpass);
     /*mensagemErro("teste");*/
         //email tem de ter 1 @ e 1. após o @
         //morada tem de ter>5 caracteres
@@ -235,7 +237,7 @@ public class FormRegisto extends javax.swing.JFrame {
             telefone.equals("") || NIF.equals("") || REpass.equals("") || password.equals("")){
       mensagemErro("Preencha todos os campos!"); 
     }else{
-        /*if (!ValidaCampoNome(nome)){
+       /* if (!ValidaCampoNome(nome)){
           mensagemErro("O campo nome tem " + " de ter 2 caracteres alfabéticos");
             }
         if (!ValidaCampoEmail(email)){
@@ -249,13 +251,13 @@ public class FormRegisto extends javax.swing.JFrame {
             }
         if (!ValidaCampoMorada(morada)){
           mensagemErro("O campo morada tem de conter mais 5 caracteres");
-            }
+            }*/
         if (!ValidaCampoPassword(password)){
           mensagemErro("O campo password tem de conter 8 caracteres");
-            }*/
-        if (!password.equals(REpass)){
+            }
+        /*if (!password.equals(REpass)){
             mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        }
+        }*/
         
         
             
@@ -317,7 +319,7 @@ public class FormRegisto extends javax.swing.JFrame {
 
     private boolean ValidaCampoNome(String nome) {
         int x, contador = 0, t= nome.length();
-        char c = 0;
+        char c;
         if (t <2)
             return false;
         else{
@@ -334,7 +336,7 @@ public class FormRegisto extends javax.swing.JFrame {
 
     private boolean ValidaCampoMorada(String morada) {
         int x, contador = 0, t = morada.length();
-        char k = 0;
+        char k;
         if (t<5)
             return false;
         else{
@@ -350,25 +352,25 @@ public class FormRegisto extends javax.swing.JFrame {
     }
 
    private boolean ValidaCampoPassword(String password) {
-       int x, cont=0, t=password.length();
+       int x,b = 0, cont=0, t=password.length();
        int numb = 0, mini = 0, maiu = 0,crc = 0;
        String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
-       char c;
+       char c = 0;
        
-       for (x = 0; x < p; x++) { 
+       for (x = 0; x < b; x++) { 
         cont = password.charAt(x); 
-        if(password<8){ 
+        if(t<8){ 
             return false;
         }
         if (Character.isDigit(c)) { 
              numb++;
-        } //booleano numberPresent = true;
+        } 
         if (Character.isUpperCase(c)) { 
             maiu++;
         } 
         if (Character.isLowerCase(c)) { 
             mini++;
-        } //booleano lowerCasePresent = true; 
+        } 
         else if (specialChars.contains(String.valueOf(c))) { 
             crc++;
         } 
@@ -376,7 +378,7 @@ public class FormRegisto extends javax.swing.JFrame {
      if(numb<=1==true && maiu<=1==true && mini<=1==true && crc<=8==true){ 
          return true;      
      }
-    }  // booleano specialCharacterPresent = true;  
+    }  
         return false;
  }
 
