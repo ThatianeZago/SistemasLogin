@@ -122,7 +122,6 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="ctxPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>

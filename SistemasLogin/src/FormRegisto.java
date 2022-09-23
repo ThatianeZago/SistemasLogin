@@ -1,5 +1,6 @@
 
 import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -222,7 +223,7 @@ public class FormRegisto extends javax.swing.JFrame {
     String password = ctxpass.getText();
     String REpass = ctxREpass.getText();
     /*mensagemErro("teste");*/
-        //email tem de ter 1@ e 1. após o @
+        //email tem de ter 1 @ e 1. após o @
         //morada tem de ter>5 caracteres
         //telefone 9 caracteres que sejam digito
         //nif 9 caracteres que sejam digito
@@ -230,22 +231,29 @@ public class FormRegisto extends javax.swing.JFrame {
         //pass 8 ou + caracteres, 1ou+ minusculas
         //1 ou+ algarismos, 1 ou+ maiusculas,
         //1 ou+ caracteres especiais
-    if(email.equals("") || !nome.equals("") || morada.equals("") ||
+    if(email.equals("") || nome.equals("") || morada.equals("") ||
             telefone.equals("") || NIF.equals("") || REpass.equals("") || password.equals("")){
-      mensagemErro("Preencha todos os campos!");  
+      mensagemErro("Preencha todos os campos!"); 
     }else{
         if (!ValidaCampoNome(nome)){
-          mensagemErro("O campo nome tem de ter 2 caracteres alfabéticos");
+          mensagemErro("O campo nome tem " + " de ter 2 caracteres alfabéticos");
             }
         if (!ValidaCampoNumerico(telefone)){
-          mensagemErro("O campo telefone tem de ser númerico e ter 9 digítos");
+          mensagemErro("O campo telefone tem " + " de ser númerico e ter 9 digítos");
             }  
         if (!ValidaCampoNumerico(NIF)){
-          mensagemErro("O campo NIF tem de ser númerico e ter 9 digítos");
+          mensagemErro("O campo NIF tem " + " de ser númerico e ter 9 digítos");
+            }
+        if (!ValidaCampoMorada(morada)){
+          mensagemErro("O campo morada tem " + " de ter mais 5 caracteres");
+            }
+        /*if (!ValidaCampoPassword(password)){
+          mensagemErro("O campo e-mail tem " + " de ter ");
+            }*/
+        if (!ValidaCampoEmail(email)){
+          mensagemErro("O campo e-mail tem" + "de ter mais");
             }
         
-}
-    
             
     
 
@@ -254,8 +262,9 @@ public class FormRegisto extends javax.swing.JFrame {
 
 
 
+}
     }//GEN-LAST:event_ctxvalidarActionPerformed
-
+ 
    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -302,9 +311,50 @@ public class FormRegisto extends javax.swing.JFrame {
         return true;    
     }
 
-    private boolean ValidaCampoNome(String nome) {
-       int n1
-               
-        if(n1>2)
+    private boolean ValidaCampoNome(String valor) {
+        int x, contador = 0, t= valor.length();
+        char c = 0;
+        if (t <2)
+            return false;
+        else{
+            for (x = 0; x<t; x++){
+                c = valor.charAt(x);
+                if (isLetter(c))
+                    contador++;
+            }
+            if (t!=contador)
+                return false;
+        }
+        return true;
     }
+
+    private boolean ValidaCampoMorada(String valor) {
+        int x, contador = 0, t = valor.length();
+        char k = 0;
+        if (t<5)
+            return false;
+        else{
+            for (x = 0; x<t; x++){
+                k = valor.charAt(x);
+                if (isLetter(k))
+                    contador++;
+            }
+            if (t!=contador)
+                return false;
+        }
+        return true;
+    }
+
+   /* private boolean ValidaCampoPassword(String valor) {
+        
+    }*/
+
+    private boolean ValidaCampoEmail(String email) {
+        
+     }
 }
+    
+ 
+   
+
+

@@ -36,7 +36,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        ctxPassword.setText("jPasswordField1");
         ctxPassword.setToolTipText("");
         ctxPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
