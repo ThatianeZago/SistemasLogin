@@ -235,24 +235,28 @@ public class FormRegisto extends javax.swing.JFrame {
             telefone.equals("") || NIF.equals("") || REpass.equals("") || password.equals("")){
       mensagemErro("Preencha todos os campos!"); 
     }else{
-        if (!ValidaCampoNome(nome)){
+        /*if (!ValidaCampoNome(nome)){
           mensagemErro("O campo nome tem " + " de ter 2 caracteres alfabéticos");
             }
+        if (!ValidaCampoEmail(email)){
+            mensagemErro("O campo e-mail tem que conter @.");
+        }
         if (!ValidaCampoNumerico(telefone)){
-          mensagemErro("O campo telefone tem " + " de ser númerico e ter 9 digítos");
-            }  
+          mensagemErro("O campo telefone tem de conter 9 digítos numéricos"); 
+            }
         if (!ValidaCampoNumerico(NIF)){
-          mensagemErro("O campo NIF tem " + " de ser númerico e ter 9 digítos");
+          mensagemErro("O campo NIF tem de conter 9 digítos numéricos");
             }
         if (!ValidaCampoMorada(morada)){
-          mensagemErro("O campo morada tem " + " de ter mais 5 caracteres");
+          mensagemErro("O campo morada tem de conter mais 5 caracteres");
             }
-        /*if (!ValidaCampoPassword(password)){
-          mensagemErro("O campo e-mail tem " + " de ter ");
+        if (!ValidaCampoPassword(password)){
+          mensagemErro("O campo password tem de conter 8 caracteres");
             }*/
-        if (!ValidaCampoEmail(email)){
-          mensagemErro("O campo e-mail tem" + "de ter mais");
-            }
+        if (!password.equals(REpass)){
+            mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        }
+        
         
             
     
@@ -311,14 +315,14 @@ public class FormRegisto extends javax.swing.JFrame {
         return true;    
     }
 
-    private boolean ValidaCampoNome(String valor) {
-        int x, contador = 0, t= valor.length();
+    private boolean ValidaCampoNome(String nome) {
+        int x, contador = 0, t= nome.length();
         char c = 0;
         if (t <2)
             return false;
         else{
             for (x = 0; x<t; x++){
-                c = valor.charAt(x);
+                c = nome.charAt(x);
                 if (isLetter(c))
                     contador++;
             }
@@ -328,14 +332,14 @@ public class FormRegisto extends javax.swing.JFrame {
         return true;
     }
 
-    private boolean ValidaCampoMorada(String valor) {
-        int x, contador = 0, t = valor.length();
+    private boolean ValidaCampoMorada(String morada) {
+        int x, contador = 0, t = morada.length();
         char k = 0;
         if (t<5)
             return false;
         else{
             for (x = 0; x<t; x++){
-                k = valor.charAt(x);
+                k = morada.charAt(x);
                 if (isLetter(k))
                     contador++;
             }
@@ -345,16 +349,47 @@ public class FormRegisto extends javax.swing.JFrame {
         return true;
     }
 
-   /* private boolean ValidaCampoPassword(String valor) {
-        
-    }*/
+   private boolean ValidaCampoPassword(String password) {
+       int x, cont=0, t=password.length();
+       int numb = 0, mini = 0, maiu = 0,crc = 0;
+       String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
+       char c;
+       
+       for (x = 0; x < p; x++) { 
+        cont = password.charAt(x); 
+        if(password<8){ 
+            return false;
+        }
+        if (Character.isDigit(c)) { 
+             numb++;
+        } //booleano numberPresent = true;
+        if (Character.isUpperCase(c)) { 
+            maiu++;
+        } 
+        if (Character.isLowerCase(c)) { 
+            mini++;
+        } //booleano lowerCasePresent = true; 
+        else if (specialChars.contains(String.valueOf(c))) { 
+            crc++;
+        } 
 
-    private boolean ValidaCampoEmail(String email) {
-        
+     if(numb<=1==true && maiu<=1==true && mini<=1==true && crc<=8==true){ 
+         return true;      
      }
-}
-    
- 
-   
+    }  // booleano specialCharacterPresent = true;  
+        return false;
+ }
+
+    private boolean ValidaCampoEmail(String email){
+         int c = 0 ,  e = email.length() ;
+        if (email.indexOf("@") >= 1 ) {
+        if (email.indexOf(".") >= email.indexOf("@")+2)
+        return true;    
+       if ((email.indexOf("@")+email.indexOf(".") - email.length()) >= 1 )
+         System.out.print("Email aprovado" + (email.length() - (email.indexOf("@")+email.indexOf("."))));
+       }
+        return false; 
+    }
+ }
 
 
