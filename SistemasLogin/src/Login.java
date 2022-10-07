@@ -1,3 +1,7 @@
+
+import java.io.File;
+import java.io.IOException;
+
 public class Login extends javax.swing.JFrame {
 
   
@@ -55,10 +59,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 255, 51));
+        jButton3.setBackground(new java.awt.Color(0, 153, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Iniciar Sessão");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +134,19 @@ public class Login extends javax.swing.JFrame {
     private void ctxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxPasswordActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        /*validação através da recolha e comparação de passwrod e login
+        1º verificar se existe ficheiro "login.txt"
+        2º verificar de a password corresponde a pass que está no ficheiro
+        se sim, segue para a JFrame form MenuOpções*/
+        // se login e passaword corretos faz isto que se segue 
+        MenoOpcoes mo = new MenoOpcoes(); 
+        this.setVisible(false);
+        mo.setVisible(true);
+        //senão, lanca um alert de dados de login incorretos
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         

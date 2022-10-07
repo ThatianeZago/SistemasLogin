@@ -1,18 +1,13 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author tleite
- */
 public class FormRegisto extends javax.swing.JFrame {
 
     /**
@@ -48,6 +43,8 @@ public class FormRegisto extends javax.swing.JFrame {
         ctxvalidar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         ctxtelefone = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        ctxlogin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +93,7 @@ public class FormRegisto extends javax.swing.JFrame {
 
         ctxvalidar.setBackground(new java.awt.Color(51, 255, 51));
         ctxvalidar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ctxvalidar.setText("VALIDAR DADOS");
+        ctxvalidar.setText("REGISTRAR UTILIZADOR");
         ctxvalidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxvalidarActionPerformed(evt);
@@ -106,12 +103,20 @@ public class FormRegisto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Número telefônico:");
 
+        jLabel9.setText("Login");
+
+        ctxlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxloginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(202, 202, 202))
             .addGroup(layout.createSequentialGroup()
@@ -119,72 +124,79 @@ public class FormRegisto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ctxNome, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                            .addComponent(ctxemail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ctxmorada, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ctxNIF, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ctxtelefone, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(67, 67, 67))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ctxNome, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                            .addComponent(ctxemail)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ctxvalidar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ctxREpass))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                .addGap(65, 65, 65)
-                                .addComponent(ctxpass, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(65, 65, 65))))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ctxvalidar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ctxREpass))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addGap(65, 65, 65)
+                        .addComponent(ctxpass, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ctxmorada)
+                            .addComponent(ctxtelefone)
+                            .addComponent(ctxNIF)
+                            .addComponent(ctxlogin))))
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ctxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(ctxemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(25, 25, 25)
+                        .addComponent(ctxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ctxemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(53, 53, 53)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxmorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxNIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(ctxtelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxtelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxREpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(ctxvalidar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,7 +234,8 @@ public class FormRegisto extends javax.swing.JFrame {
     String NIF = ctxNIF.getText();
     String password = ctxpass.getText();
     String REpass = ctxREpass.getText();
-    System.out.println("Pass"+pass);
+    String loginN = ctxlogin.getText();
+    System.out.println("Password"+password);
     System.out.println("REpass"+REpass);
     /*mensagemErro("teste");*/
         //email tem de ter 1 @ e 1. após o @
@@ -237,7 +250,7 @@ public class FormRegisto extends javax.swing.JFrame {
             telefone.equals("") || NIF.equals("") || REpass.equals("") || password.equals("")){
       mensagemErro("Preencha todos os campos!"); 
     }else{
-       /* if (!ValidaCampoNome(nome)){
+       if (!ValidaCampoNome(nome)){
           mensagemErro("O campo nome tem " + " de ter 2 caracteres alfabéticos");
             }
         if (!ValidaCampoEmail(email)){
@@ -251,14 +264,46 @@ public class FormRegisto extends javax.swing.JFrame {
             }
         if (!ValidaCampoMorada(morada)){
           mensagemErro("O campo morada tem de conter mais 5 caracteres");
-            }*/
+            }
         if (!ValidaCampoPassword(password)){
           mensagemErro("O campo password tem de conter 8 caracteres");
             }
-        /*if (!password.equals(REpass)){
+        if (!password.equals(REpass)){
             mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        }*/
-        
+        }
+        //»»»»»»»»»»»»»»»»»»»»»»LOGIN«««««««««««««««««««««««««««««
+        {
+          
+        File ficheiro = new File (nome+".txt");
+        if(!ficheiro.exists()){
+           try{
+               ficheiro.createNewFile();
+               FileWriter fw = new FileWriter(ficheiro);
+                BufferedWriter bw = new BufferedWriter (fw);
+                bw.write(password);
+                bw.newLine();
+                bw.write(REpass);
+                bw.newLine();
+                bw.write(nome);
+                bw.newLine();
+                bw.write(email);
+                bw.newLine();
+                bw.write(morada);
+                bw.newLine();
+                bw.write(NIF);
+                bw.newLine();
+                bw.write(telefone);
+                bw.newLine();
+                bw.close();
+                fw.close();
+           } catch (IOException ex){
+                ex.printStackTrace();
+            } 
+
+ }
+      
+            
+        }
         
             
     
@@ -270,6 +315,9 @@ public class FormRegisto extends javax.swing.JFrame {
 
 }
     }//GEN-LAST:event_ctxvalidarActionPerformed
+    private void ctxloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxloginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxloginActionPerformed
  
    
     public static void main(String args[]) {
@@ -285,6 +333,7 @@ public class FormRegisto extends javax.swing.JFrame {
     private javax.swing.JTextField ctxNome;
     private javax.swing.JPasswordField ctxREpass;
     private javax.swing.JTextField ctxemail;
+    private javax.swing.JTextField ctxlogin;
     private javax.swing.JTextField ctxmorada;
     private javax.swing.JPasswordField ctxpass;
     private javax.swing.JTextField ctxtelefone;
@@ -298,6 +347,7 @@ public class FormRegisto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
     private boolean ValidaCampoNumerico(String valor) {
@@ -352,46 +402,46 @@ public class FormRegisto extends javax.swing.JFrame {
     }
 
    private boolean ValidaCampoPassword(String password) {
-       int x,b = 0, cont=0, t=password.length();
-       int numb = 0, mini = 0, maiu = 0,crc = 0;
-       String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
-       char c = 0;
-       
-       for (x = 0; x < b; x++) { 
-        cont = password.charAt(x); 
-        if(t<8){ 
+       int x = 0, p = password.length();
+        int mai = 0;
+        int min = 0;
+        int num = 0;
+        int sc = 0;
+        if (p < 8)
             return false;
-        }
-        if (Character.isDigit(c)) { 
-             numb++;
-        } 
-        if (Character.isUpperCase(c)) { 
-            maiu++;
-        } 
-        if (Character.isLowerCase(c)) { 
-            mini++;
-        } 
-        else if (specialChars.contains(String.valueOf(c))) { 
-            crc++;
-        } 
+        for (x = 0; x < p; x++){
+            char c = password.charAt(x);
+            if (c == ' ')
+                return false;
+            if (Character.isDigit(c)){
+                num++;
+            }
+            if (Character.isUpperCase(c)){
+                mai++;
+            }
+            if (Character.isLowerCase(c)){
+                min++;
+            }
+            if (!isDigit(c) && !isLetter(c))
+                sc++;
+    
+         }
+    if (min > 0 && mai> 0 && sc > 0 && num > 0)
+        return true;
+    else
+         return false;
+    }
 
-     if(numb<=1==true && maiu<=1==true && mini<=1==true && crc<=8==true){ 
-         return true;      
-     }
-    }  
-        return false;
- }
-
-    private boolean ValidaCampoEmail(String email){
-         int c = 0 ,  e = email.length() ;
+    private boolean ValidaCampoEmail(String email) {
+        int c = 0 ,  e = email.length();
         if (email.indexOf("@") >= 1 ) {
         if (email.indexOf(".") >= email.indexOf("@")+2)
         return true;    
        if ((email.indexOf("@")+email.indexOf(".") - email.length()) >= 1 )
          System.out.print("Email aprovado" + (email.length() - (email.indexOf("@")+email.indexOf("."))));
        }
-        return false; 
+        return false;
     }
  }
-
+  
 
