@@ -38,7 +38,7 @@
                           <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="INICIAR" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" max="32767" attributes="0"/>
+                  <Component id="INICIAR" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
@@ -149,7 +149,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="INICIAR">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="0" type="rgb"/>
@@ -163,7 +163,7 @@
         <Property name="text" type="java.lang.String" value="Iniciar Sess&#xe3;o"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="INICIARActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

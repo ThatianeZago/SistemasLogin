@@ -1,6 +1,10 @@
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -20,7 +24,7 @@ public class Login extends javax.swing.JFrame {
         ctxPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        INICIAR = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -59,13 +63,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 255));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Iniciar Sessão");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        INICIAR.setBackground(new java.awt.Color(0, 153, 255));
+        INICIAR.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        INICIAR.setForeground(new java.awt.Color(255, 255, 255));
+        INICIAR.setText("Iniciar Sessão");
+        INICIAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                INICIARActionPerformed(evt);
             }
         });
 
@@ -80,7 +84,7 @@ public class Login extends javax.swing.JFrame {
                             .addGap(182, 182, 182)
                             .addComponent(jButton2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3))
+                            .addComponent(INICIAR))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(164, 164, 164)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -113,7 +117,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(INICIAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -133,20 +137,57 @@ public class Login extends javax.swing.JFrame {
 
     private void ctxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ctxPasswordActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         /*validação através da recolha e comparação de passwrod e login
         1º verificar se existe ficheiro "login.txt"
         2º verificar de a password corresponde a pass que está no ficheiro
         se sim, segue para a JFrame form MenuOpções*/
         // se login e passaword corretos faz isto que se segue 
-        MenoOpcoes mo = new MenoOpcoes(); 
-        this.setVisible(false);
-        mo.setVisible(true);
+       MenoOpcoes mo = new MenoOpcoes(); 
+       this.setVisible(false);
+       mo.setVisible(true);
         //senão, lanca um alert de dados de login incorretos
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_ctxPasswordActionPerformed
+private void mensagemErro(String erro){
+            JOptionPane.showMessageDialog(null, erro, "Erro Validação", JOptionPane.ERROR_MESSAGE);
+        }
+    private void INICIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INICIARActionPerformed
+    //comparar as password 
+
+    String password = ctxPassword.getText();
+    String login = ctxlogin.getText();
+    
+    File ficheiro = new File (login+".txt");
+    if(!ficheiro.exists()){
+            mensagemErro ("O Login não é valido !");   
+            }else{
+                  try{
+                      int count = 0;
+                FileReader fr = new FileReader (ficheiro);
+                BufferedReader br = new BufferedReader (fr);
+                while (br.ready()){
+                    String linha = br.readLine (); count ++;
+                    if (count == 1){
+                        if (password.equals(linha)){
+                            MenoOpcoes mo = new MenoOpcoes ();
+                        this.setVisible(false);
+                        mo.setVisible(true);    
+                        }else{
+                            mensagemErro ("Password inválida !"); 
+                        }
+                    }
+                }
+                br.close();
+                br.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ioe) {
+                
+            }
+                    }
+    
+            
+    }//GEN-LAST:event_INICIARActionPerformed
 
     public static void main(String args[]) {
         
@@ -158,13 +199,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton INICIAR;
     private javax.swing.JPasswordField ctxPassword;
     private javax.swing.JTextField ctxlogin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+
+  
 }
