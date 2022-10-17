@@ -14,6 +14,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
+    public static String login;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -31,10 +32,10 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Login");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("LOGIN");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("PASSWORD");
 
         ctxlogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -54,7 +55,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loginLogo.png"))); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Registra-se");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +65,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         INICIAR.setBackground(new java.awt.Color(0, 153, 255));
-        INICIAR.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        INICIAR.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         INICIAR.setForeground(new java.awt.Color(255, 255, 255));
         INICIAR.setText("Iniciar Sessão");
         INICIAR.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +100,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(jLabel4)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +156,7 @@ private void mensagemErro(String erro){
     //comparar as password 
 
     String password = ctxPassword.getText();
-    String login = ctxlogin.getText();
+    login = ctxlogin.getText();
     
     File ficheiro = new File (login+".txt");
     if(!ficheiro.exists()){
