@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException; 
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class MenoOpcoes extends javax.swing.JFrame {
     public static Scanner ler = new Scanner (System.in);
     public MenoOpcoes() {
@@ -168,9 +170,13 @@ public class MenoOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_SAIRFORAActionPerformed
 
     private void EDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARActionPerformed
-        EditUtil eu = new EditUtil();
-        this.setVisible(false);
-        eu.setVisible(true); 
+        try {
+            EditUtil eu = new EditUtil();
+            this.setVisible(false); 
+            eu.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MenoOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_EDITARActionPerformed
 
     /**
@@ -216,9 +222,5 @@ public class MenoOpcoes extends javax.swing.JFrame {
     private javax.swing.JButton VISUALIZAR;
     // End of variables declaration//GEN-END:variables
 
-    static class ler {
-
-        public ler() {
-        }
-    }
+    
 }

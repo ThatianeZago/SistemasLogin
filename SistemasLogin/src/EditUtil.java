@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -273,10 +275,10 @@ public class EditUtil extends javax.swing.JFrame {
                 mensagemErro("As passawords não coincidem");
             }
             //»»»»»»»»»»»»»»»»»»»»»»LOGIN«««««««««««««««««««««««««««««
-            {
+            
 
                 File ficheiro = new File (nome+".txt");
-                if(!ficheiro.exists()){
+                if(ficheiro.exists()){
                     try{
                         ficheiro.createNewFile();
                         FileWriter fw = new FileWriter(ficheiro);
@@ -302,9 +304,6 @@ public class EditUtil extends javax.swing.JFrame {
                     }
 
                 }
-
-            }
-
         }
     }//GEN-LAST:event_ctxVALIDATEActionPerformed
 
@@ -338,7 +337,11 @@ public class EditUtil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditUtil().setVisible(true);
+                try {
+                    new EditUtil().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -456,23 +459,32 @@ private boolean ValidaCampoNumerico(String valor) {
     }
 
     private void Preencheformulario() throws FileNotFoundException, IOException {
+        //Novo método criado para executar e percorrer linha por linha do array.
         int cont = 0;
         String [] lista = new String[7];
-        FileReader fr = new FileReader(Login.login+".txt");
-        BufferedReader br = new BufferedReader (fr);
+        FileReader fr = new FileReader(Login.login +".txt");
         
-        while(br.ready()){
-            lista[cont] = br.readLine();
-                    cont++;
-                            
-        ctxWORD.setText(lista[0]);
-        ctxREWORD.setText(lista[1]);
-        ctxNAME.setText(lista[2]);
-        ctxMAIL.setText(lista[3]);
-        ctxADDRESS.setText(lista[4]); 
-        ctxNUMBER.setText(lista[5]);
-        ctxCPF.setText(lista[6]);                    
-        }                
-              
-    }
+        try {
+            fr = new FileReader(Login.login+".txt");
+             BufferedReader br = new BufferedReader(fr);
+            while (br.ready()){
+                lista[cont] = br.readLine();
+                cont ++;
+            }
+                ctxWORD.setText(lista[0]);
+                ctxREWORD.setText(lista[1]);
+                ctxNAME.setText(lista[2]);
+                ctxMAIL.setText(lista[3]);
+                ctxADDRESS.setText(lista[4]); 
+                ctxNUMBER.setText(lista[5]);
+                ctxCPF.setText(lista[6]);                 
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
+        
+   
+               } catch (IOException ex) {
+            Logger.getLogger(MenoOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
 }
