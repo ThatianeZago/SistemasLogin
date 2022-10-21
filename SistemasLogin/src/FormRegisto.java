@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -275,7 +278,7 @@ public class FormRegisto extends javax.swing.JFrame {
             mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
         }
         //»»»»»»»»»»»»»»»»»»»»»»LOGIN«««««««««««««««««««««««««««««
-        {
+        
           
         File ficheiro = new File (nome+".txt");
         if(!ficheiro.exists()){
@@ -301,12 +304,16 @@ public class FormRegisto extends javax.swing.JFrame {
                 fw.close();
            } catch (IOException ex){
                 ex.printStackTrace();
-            } 
-
+            }
+         
  }
-      
+           try {
+               LIgaBD.registaUtilizador(nome, email, morada, Integer.parseInt(telefone), Integer.parseInt(NIF), loginN, password);
+           } catch (SQLException ex) {
+               Logger.getLogger(FormRegisto.class.getName()).log(Level.SEVERE, null, ex);
+           }
             
-        }
+        
         
             
     
