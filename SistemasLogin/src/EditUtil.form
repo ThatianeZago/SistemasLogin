@@ -200,6 +200,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ctxNUMBER">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ctxNUMBERActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

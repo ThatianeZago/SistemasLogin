@@ -135,17 +135,20 @@ public class MenoOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_VISUALIZARActionPerformed
 
     private void MOSTRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MOSTRARActionPerformed
-        // TODO add your handling code here:
-        File ficheiro = new File("C:\\Users\\TLeite\\Desktop\\NOVOLogin\\SistemasLogin\\SistemasLogin");
-        File [] lista = ficheiro.listFiles();
-        System.out.println("»»»» Lista de Dados ««««");
-        for(int x=0;x<lista.length;x++){
-            String valor = " ";
-            valor = (lista[x].toString());
-            if (valor.endsWith (".txt")){
-            System.out.println(lista[x].getName());
-            }
-        }
+ // TODO add your handling code here:
+//        File ficheiro = new File("C:\\Users\\TLeite\\Desktop\\NOVOLogin\\SistemasLogin\\SistemasLogin");
+//        File [] lista = ficheiro.listFiles();
+//        System.out.println("»»»» Lista de Dados ««««");
+//        for(int x=0;x<lista.length;x++){
+//            String valor = " ";
+//            valor = (lista[x].toString());
+//            if (valor.endsWith (".txt")){
+//            System.out.println(lista[x].getName());
+//            }
+        //}
+        tabela ta = new tabela();
+        ta.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MOSTRARActionPerformed
 
     private void DELETARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETARActionPerformed

@@ -105,6 +105,12 @@ public class EditUtil extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Nome:");
 
+        ctxNUMBER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxNUMBERActionPerformed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("NIF:");
 
@@ -339,6 +345,10 @@ public class EditUtil extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_ctxVALIDATEActionPerformed
+
+    private void ctxNUMBERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNUMBERActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxNUMBERActionPerformed
 
     /**
      * @param args the command line arguments
