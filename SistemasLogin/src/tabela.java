@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class tabela extends javax.swing.JFrame {
@@ -20,7 +21,9 @@ public class tabela extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tab = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        ctxREMOVE = new javax.swing.JButton();
+        ctxFINISH = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,32 +45,72 @@ public class tabela extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tab);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jLabel1.setText("Tabela");
+        ctxREMOVE.setBackground(new java.awt.Color(255, 255, 0));
+        ctxREMOVE.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ctxREMOVE.setText("REMOVER USER");
+        ctxREMOVE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxREMOVEActionPerformed(evt);
+            }
+        });
+
+        ctxFINISH.setBackground(new java.awt.Color(255, 51, 51));
+        ctxFINISH.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ctxFINISH.setText("SAIR");
+        ctxFINISH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxFINISHActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(51, 51, 255));
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton3.setText("MOSTRAR DADOS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ctxFINISH, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(ctxREMOVE, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ctxREMOVE, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxFINISH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ctxREMOVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxREMOVEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxREMOVEActionPerformed
+    private void mensagemErro(String erro){
+            JOptionPane.showMessageDialog(null, erro, "Erro Validação", JOptionPane.ERROR_MESSAGE);
+        }
+    private void ctxFINISHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxFINISHActionPerformed
+        //sair botão
+        Login fr = new Login ();
+        this.setVisible(false);
+        fr.setVisible(true);  
+    }//GEN-LAST:event_ctxFINISHActionPerformed
 
       public static void main(String args[]) {
         
@@ -81,7 +124,9 @@ public class tabela extends javax.swing.JFrame {
             
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton ctxFINISH;
+    private javax.swing.JButton ctxREMOVE;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tab;
     // End of variables declaration//GEN-END:variables
