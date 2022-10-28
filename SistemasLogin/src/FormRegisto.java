@@ -280,7 +280,7 @@ public class FormRegisto extends javax.swing.JFrame {
         //»»»»»»»»»»»»»»»»»»»»»»LOGIN«««««««««««««««««««««««««««««
         
           
-        File ficheiro = new File (nome+".txt");
+        File ficheiro = new File (loginN+".txt");
         if(!ficheiro.exists()){
            try{
                ficheiro.createNewFile();

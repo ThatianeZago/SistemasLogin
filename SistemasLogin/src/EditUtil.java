@@ -8,6 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,7 +33,12 @@ public class EditUtil extends javax.swing.JFrame {
      */
     public EditUtil() throws IOException {
         initComponents();
-         Preencheformulario();
+        try {
+            //Preencheformulario();
+            PreencheBD();
+        } catch (SQLException ex) {
+            Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
    
@@ -61,6 +70,8 @@ public class EditUtil extends javax.swing.JFrame {
         ctxVALIDATE = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        ctxlogin1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +130,9 @@ public class EditUtil extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Número telefônico:");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("Login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,10 +165,15 @@ public class EditUtil extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(ctxWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ctxREWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ctxlogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ctxREWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +218,11 @@ public class EditUtil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxREWORD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxlogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GoOUT)
                     .addComponent(ctxVALIDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,6 +261,7 @@ public class EditUtil extends javax.swing.JFrame {
         String NIF = ctxNUMBER.getText();
         String password = ctxWORD.getText();
         String REpass = ctxREWORD.getText();
+        String login = ctxlogin1.getText();
         System.out.println("Password"+password);
         System.out.println("REpass"+REpass);
         /*mensagemErro("teste");*/
@@ -305,6 +329,12 @@ public class EditUtil extends javax.swing.JFrame {
 
                 }
         }
+        try {
+            LIgaBD.atualizaUtilizador(nome,email,morada,telefone,NIF,login,password);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_ctxVALIDATEActionPerformed
 
     /**
@@ -356,6 +386,7 @@ public class EditUtil extends javax.swing.JFrame {
     private javax.swing.JPasswordField ctxREWORD;
     private javax.swing.JButton ctxVALIDATE;
     private javax.swing.JPasswordField ctxWORD;
+    private javax.swing.JTextField ctxlogin1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -364,6 +395,7 @@ public class EditUtil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 private boolean ValidaCampoNumerico(String valor) {
         int x, contador=0, t=valor.length();
@@ -458,33 +490,55 @@ private boolean ValidaCampoNumerico(String valor) {
         return false;
     }
 
-    private void Preencheformulario() throws FileNotFoundException, IOException {
+    //private void Preencheformulario() throws FileNotFoundException, IOException {
+        //Vai consultar no ficheiro e vai preencher proveniente do ficheiro.
         //Novo método criado para executar e percorrer linha por linha do array.
-        int cont = 0;
-        String [] lista = new String[7];
-        FileReader fr = new FileReader(Login.login +".txt");
-        
-        try {
-            fr = new FileReader(Login.login+".txt");
-             BufferedReader br = new BufferedReader(fr);
-            while (br.ready()){
-                lista[cont] = br.readLine();
-                cont ++;
-            }
-                ctxWORD.setText(lista[0]);
-                ctxREWORD.setText(lista[1]);
-                ctxNAME.setText(lista[2]);
-                ctxMAIL.setText(lista[3]);
-                ctxADDRESS.setText(lista[4]); 
-                ctxNUMBER.setText(lista[5]);
-                ctxCPF.setText(lista[6]);                 
+//        int cont = 0;
+//        String [] lista = new String[7];
+//        FileReader fr = new FileReader(Login.login +".txt");
+//        
+//        try {
+//            fr = new FileReader(Login.login+".txt");
+//             BufferedReader br = new BufferedReader(fr);
+//            while (br.ready()){
+//                lista[cont] = br.readLine();
+//                cont ++;
+//            }
+//                ctxWORD.setText(lista[0]);
+//                ctxREWORD.setText(lista[1]);
+//                ctxNAME.setText(lista[2]);
+//                ctxMAIL.setText(lista[3]);
+//                ctxADDRESS.setText(lista[4]); 
+//                ctxNUMBER.setText(lista[5]);
+//                ctxCPF.setText(lista[6]);                 
+//                
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
+//        
+//   
+//               } catch (IOException ex) {
+//            Logger.getLogger(MenoOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }  
+
+    private void PreencheBD() throws SQLException{
+        Connection conn = LIgaBD.Ligacao();
+        //"Você não entra em casa antes de abrir a porta."
+        String sql = "SELECT * FROM utilizador WHERE login ='"+Login.login+"'";
+        PreparedStatement ps = conn.prepareStatement(sql);
+       
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
                 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(EditUtil.class.getName()).log(Level.SEVERE, null, ex);
-        
-   
-               } catch (IOException ex) {
-            Logger.getLogger(MenoOpcoes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }  
+               ctxNAME.setText(rs.getString(2));
+                ctxMAIL.setText( rs.getString(3));
+                ctxADDRESS.setText( rs.getString(4));
+                ctxNUMBER.setText(""+rs.getInt(5)); 
+                ctxCPF.setText(""+rs.getInt(6)); 
+                ctxlogin1.setText(rs.getString(7));
+                ctxWORD.setText(rs.getString(8));
+                ctxREWORD.setText(rs.getString(8)); 
+                
+            }                                     
+    }
 }
