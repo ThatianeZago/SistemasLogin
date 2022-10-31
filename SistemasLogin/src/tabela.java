@@ -1,10 +1,13 @@
 
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,9 +16,7 @@ public class tabela extends javax.swing.JFrame {
        public tabela() {
         initComponents();
         preencheTabela();
-    }
-       
-    @SuppressWarnings("unchecked")
+    }     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -65,7 +66,12 @@ public class tabela extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(51, 51, 255));
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("MOSTRAR DADOS");
+        jButton3.setText("EDITAR DADOS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,17 +106,37 @@ public class tabela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ctxREMOVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxREMOVEActionPerformed
-        // TODO add your handling code here:
+    DefaultTableModel dtm = (DefaultTableModel)tab.getModel();
+        if (tab.getSelectedRow() >= 0){
+            int i = JOptionPane.showConfirmDialog(null,"Prosseguir com a eliminação", "Mensagem de alerta", JOptionPane.YES_NO_OPTION);
+            if(i== JOptionPane.YES_OPTION){
+             int p = (int)tab.getValueAt(tab.getSelectedRow(),0);
+         LIgaBD.remove(p);
+            }    
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }     
     }//GEN-LAST:event_ctxREMOVEActionPerformed
     private void mensagemErro(String erro){
             JOptionPane.showMessageDialog(null, erro, "Erro Validação", JOptionPane.ERROR_MESSAGE);
         }
     private void ctxFINISHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxFINISHActionPerformed
         //sair botão
-        Login fr = new Login ();
+        MenoOpcoes fr = new MenoOpcoes ();
         this.setVisible(false);
         fr.setVisible(true);  
     }//GEN-LAST:event_ctxFINISHActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            LIgaBD.Ligacao();
+            EditUtil eu = new EditUtil();
+            this.setVisible(false); 
+            eu.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MenoOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
       public static void main(String args[]) {
         

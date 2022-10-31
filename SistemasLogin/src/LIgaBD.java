@@ -62,4 +62,15 @@ public class LIgaBD {
 }   
     
     }
-}
+
+    static void remove(int p) {
+        try {
+            PreparedStatement ps=null;
+            Connection conexao = LIgaBD.Ligacao();
+            ps = conexao.prepareStatement("DELETE FROM utilizador WHERE login ='" +Login.login+"'");
+            ps.executeUpdate();
+            //pstmnt.executeBatch();
+            System.out.println("Removed User :" + Login.login);
+        } catch (SQLException e) {System.out.println("Error: " + e.getMessage()); }
+    }
+ }
